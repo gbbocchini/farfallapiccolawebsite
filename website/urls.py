@@ -1,10 +1,9 @@
 from django.urls import path
 from website import views
-from website import forms
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf.urls import url
+from django.views.generic import TemplateView
+
 
 admin.autodiscover()
 
@@ -15,4 +14,6 @@ urlpatterns = [
     path('aonde/', views.Aonde.as_view(), name='aonde'),
     path('trabalhos/', views.trabalhos, name='trabalhos'),
     url(r'^(?P<slug>[-\w]+)$', views.AlbumDetail.as_view(), name='album'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^robots\.txt/$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    url(r'^sitemap\.xml/$', TemplateView.as_view(template_name='sitemap.xml', content_type='application/xml')),
+]

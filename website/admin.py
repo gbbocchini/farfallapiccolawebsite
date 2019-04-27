@@ -5,7 +5,6 @@ import os
 import uuid
 import zipfile
 from datetime import datetime
-from zipfile import ZipFile
 from django.core.files.base import ContentFile
 from PIL import Image
 

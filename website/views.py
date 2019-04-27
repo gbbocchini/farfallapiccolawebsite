@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View,TemplateView, FormView, ListView, DetailView
+from django.views.generic import TemplateView, DetailView
 from django.core.mail import send_mail
 from website import forms
 from website.models import Album, AlbumImage
@@ -48,15 +48,13 @@ class AlbumDetail(DetailView):
 #Form contato view
 def contato(request):
     form = forms.ContactForm()
-    if request.method == 'GET':
-        form = forms.ContactForm(request.GET)
-
+    if request.method == 'POST':
+        form = forms.ContactForm(request.POST)
         if form.is_valid():
-            subject = "Email do site Farfalla!"
-            nome = form.cleaned_data['Nome']
-            email = form.cleaned_data['Email']
-            mensagem = form.cleaned_data['Mensagem']
-            send_mail(subject, mensagem, email, ['atelierfarfallapiccola@gmail.com'])
+            subject = "Email de: "+form.cleaned_data['Email']+" vindo do site FarfallaPiccola"
+            email = ''
+            mensagem = "Nome do remetente: "+form.cleaned_data['Nome']+" Mensagem: "+form.cleaned_data['Mensagem']
+            send_mail(subject, mensagem, email, [''])
         return render(request, 'contact.html', {'form':form})
 
     else:
@@ -64,7 +62,3 @@ def contato(request):
 
     return render(request, 'contact.html', {'form':form})
 
-#404
-def handler404(request):
-    assert isinstance(request, HttpRequest)
-    return render(request, 'handler404.html', None, None, 404)
