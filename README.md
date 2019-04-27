@@ -1,4 +1,6 @@
 # farfallapiccolawebsite
-Repo for farfallapiccola atelier website (no template or statics).
+Oficial repo for Farfalla Piccola Atelier website (no template or statics, copyrighted).
 
-Website not published yet.
+FARFALLAPICCOLA.ART.BR :)
+
+
